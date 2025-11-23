@@ -1,8 +1,12 @@
+import os
+from dotenv import load_dotenv
 import discord
 from discord.ext import commands
 # Importamos 'timezone' para manejo de UTC
 from datetime import datetime, timedelta, timezone 
 import time
+# Asegúrate de que esta línea esté al inicio, después de los imports:
+load_dotenv()
 
 # Reemplaza 'TU_TOKEN_DE_BOT' con el token real
 intents = discord.Intents.default()
@@ -101,5 +105,5 @@ async def mostrar_horarios(ctx):
 
     await ctx.send(mensaje)
 
-# bot.run('TU_TOKEN_DE_BOT')
-bot.run('MTQ0MjIzMzUxNTE4NDc1NDg0MA.GSKliO.aimof9V_DjpaNFL2vC2FHOH9C111uZTb6p-9J4')
+# La línea final de ejecución ahora lee el token de una variable de entorno
+bot.run(os.getenv('MTQ0MjIzMzUxNTE4NDc1NDg0MA.GSKliO.aimof9V_DjpaNFL2vC2FHOH9C111uZTb6p-9J4'))
