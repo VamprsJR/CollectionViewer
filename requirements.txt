@@ -1,4 +1,3 @@
 Plaintext
-
 discord
 python-dotenv
