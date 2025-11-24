@@ -12,23 +12,20 @@ load_dotenv()
 intents = discord.Intents.default()
 intents.message_content = True 
 bot = commands.Bot(command_prefix='!', intents=intents)
-
-# ----------------------------------------------------
 # ----------------------------------------------------
 # VARIABLES DEL CICLO
 # ----------------------------------------------------
-
 # La duración de 1 ciclo individual (20 minutos) se mantiene para referencia, pero no se usa para el cálculo total ajustado
 INTERVALO_ITEM_MINUTOS = 20
 CICLO_TOTAL_ITEMS = 26 
-
-# COMENTAR O ELIMINAR: Esto da 520 minutos, lo cual genera el desajuste.
+# NUEVO AJUSTE: Usamos timedelta para la duración exacta del ciclo total (505 minutos y 3 segundos).
+DURACION_CICLO_TOTAL = timedelta(hours=8, minutes=25, seconds=3) 
+# Almacenamiento: El tiempo base siempre se guarda en UTC (Universal)
+ULTIMO_HORARIO_REGISTRO_UTC = None
 # FULL_CYCLE_MINUTES = INTERVALO_ITEM_MINUTOS * CICLO_TOTAL_ITEMS # 520 minutos
-
 # NUEVO AJUSTE: Usamos timedelta para la duración exacta del ciclo total (505 minutos y 3 segundos).
 # Reemplazamos la variable FULL_CYCLE_MINUTES por la timedelta ajustada:
 DURACION_CICLO_TOTAL = timedelta(hours=8, minutes=25, seconds=3) 
-
 # Almacenamiento: El tiempo base siempre se guarda en UTC (Universal)
 ULTIMO_HORARIO_REGISTRO_UTC = None 
 
@@ -104,4 +101,5 @@ async def mostrar_horarios(ctx):
     await ctx.send(mensaje)
 # La línea final de ejecución ahora lee el token de una variable de entorno
 bot.run(os.getenv('DISCORD_TOKEN'))
+
 
